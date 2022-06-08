@@ -5,6 +5,8 @@ const app = express();
 
 const authRouter = require("./routes/auth");
 const jobsRouter = require("./routes/jobs");
+const authenticateUser = require("./middleware/authentication");
+
 
 // DB
 const connectDB = require("./db/connect");
@@ -23,7 +25,7 @@ app.use(express.json());
 // routes
 app.get("/",(req,res)=> res.send('Hi'))
 app.use("/api/v1/auth" ,authRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
