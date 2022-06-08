@@ -2,7 +2,7 @@ const { string } = require('joi');
 const mongoose = require('mongoose');
 
 const jobSchema = new mongoose.Schema({
-    jobTitle:{
+    company:{
         type:String,
         required: [true, "Must provide Job Title"],
         maxlength:50
